@@ -4,6 +4,7 @@ import { connectDB } from "./src/lib/db.js";
 import authRouter from "./src/routes/auth.route.js";
 import cookieParser from "cookie-parser";
 import bookRouter from "./src/routes/book.route.js";
+import transactionRouter from "./src/routes/transaction.route.js";
 
 dotenv.config();
 
@@ -15,6 +16,8 @@ app.use(express.json());
 
 app.use("/api/auth",authRouter);
 app.use("/api/book",bookRouter);
+app.use("/api/transaction",transactionRouter);
+
 
 
 
