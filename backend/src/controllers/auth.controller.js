@@ -1,3 +1,6 @@
+import User from "../models/user.model.js";
+import bcyptjs from "bcryptjs";
+
 export const signup=(req,res)=>{
     res.send("signup route");
 }
