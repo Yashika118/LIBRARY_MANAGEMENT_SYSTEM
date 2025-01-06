@@ -7,5 +7,6 @@ export const generateToken=(userId,role,res)=>{
         httpOnly:true,              // prevent xss cross site scripting attacks
         secure:process.env.NODE_ENV!=="development", 
     })
+
     return token;
 }

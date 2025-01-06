@@ -30,16 +30,19 @@ export const signup=async(req,res)=>{
             email,
             password:hashedPassword,
             contact,
+            
         });
 
         if(newUser){
-            generateToken(newUser._id,res);
+            generateToken(newUser._id,newUser.role,res);
             await newUser.save();
             res.status(201).json({
                 _id:newUser._id,
                 fullname:newUser.fullname,
                 email:newUser.email,
                 contact:newUser.contact,
+                role:newUser.role,
+                
             })
         }
         else{
@@ -69,12 +72,13 @@ export const login=async(req,res)=>{
             return res.status(400).json({message:"Invalid credentials"});
         }
         
-        generateToken(user._id,res);
+        generateToken(user._id,user.role,res);
         res.status(201).json({
             _id:user._id,
             fullname:user.fullname,
             email:user.email,
             contact:user.contact,
+            role:user.role,
         })
 
     } catch (error) {

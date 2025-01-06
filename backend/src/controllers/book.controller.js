@@ -1,5 +1,13 @@
+import Book from "../models/book.model.js";
+
+
 export const getBooks=async(req,res)=>{
-    res.send("getBooks route");
+    try {
+        const book=await Book.find();
+        res.status(200).json(book);
+    } catch (error) {
+        
+    }
 }
 
 export const addBook=async(req,res)=>{
