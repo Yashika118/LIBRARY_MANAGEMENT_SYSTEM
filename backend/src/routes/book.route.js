@@ -15,9 +15,9 @@ router.get("/getBooks",authMiddleware,getBooks); //login cahiye
 
 router.post("/addBook",authMiddleware,roleMiddleware("admin"),addBook); //login, user===admin
 
-router.put("/updateBook",authMiddleware,roleMiddleware("admin"),updateBook);
+router.put("/updateBook/:id",authMiddleware,roleMiddleware("admin"),updateBook);
 
-router.delete("/deleteBook",authMiddleware,roleMiddleware("admin"),deleteBook);
+router.delete("/deleteBook/:id",authMiddleware,roleMiddleware("admin"),deleteBook);
 
 
 export default router;
