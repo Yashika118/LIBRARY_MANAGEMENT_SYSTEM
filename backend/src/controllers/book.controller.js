@@ -1,3 +1,4 @@
+import cloudinary from "../lib/cloudinary.js";
 import Book from "../models/book.model.js";
 
 
@@ -16,11 +17,15 @@ export const addBook = async (req, res) => {
         if (!title || !author || !publicationYear) {
             return res.status(400).json({ message: "All fields are required" });
         }
+        // if(bookImage){
+        //     const uploadResponse=await cloudinary.uploader.upload(bookImage);
+        // }
         const newBook = new Book({
             title,
             author,
             publicationYear,
             availabilityStatus: true,
+            // bookImage:uploadResponse || "",
         });
 
         if (newBook) {

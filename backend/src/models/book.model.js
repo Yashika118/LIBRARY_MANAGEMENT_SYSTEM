@@ -16,6 +16,10 @@ const bookSchema=new mongoose.Schema(
         },
         availabilityStatus:{
             type:Boolean,
+        },
+        bookImage:{
+            type:String,
+            default:"",
         }
     },
     {timestamps:true}
