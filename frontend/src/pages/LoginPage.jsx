@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import toast from 'react-hot-toast';
-import { useAuthStore } from '../store/useAuthSore.js';
+import { useAuthStore } from '../store/useAuthStore.js';
 
 const LoginPage = () => {
   const {login}=useAuthStore();
