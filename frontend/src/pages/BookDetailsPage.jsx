@@ -1,26 +1,39 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useBookStore } from '../store/useBookStore.js';
+import { useTransactionStore } from '../store/useTransactionStore.js';
 
 const BookDetailsPage = () => {
     const { id } = useParams();
-    const { bookDetails, viewBook, setCurrentBookId, isLoading, error } = useBookStore();
+    const { bookDetails, viewBook, setCurrentBookId, isLoading: bookLoading, error: bookError } = useBookStore();
+    const { borrowBook, transactions, returnBook, isLoading: transactionLoading, error: transactionError } = useTransactionStore();
+
 
     useEffect(() => {
         setCurrentBookId(id);
         viewBook();
     }, [id, viewBook, setCurrentBookId]);
 
-    const handleBorrow = () => {
-        console.log('Book Borrowed:', bookDetails.title);
+
+
+    const handleBorrow = async () => {
+        
+        try {
+            await borrowBook(id);
+            console.log('Book Borrowed:', bookDetails.title);
+        } catch (error) {
+            console.error('Failed to borrow book:', error.message);
+        }finally{
+            window.location.reload();
+
+        }
+
     };
 
-    const handleReturn = () => {
-        console.log('Book Returned:', bookDetails.title);
-    };
 
-    if (isLoading) return <p className="text-center mt-10 text-xl">Loading...</p>;
-    if (error) return <p className="text-center mt-10 text-xl text-red-500">Error: {error}</p>;
+    if (bookLoading || transactionLoading) return <p className="text-center mt-10 text-xl">Loading...</p>;
+    if (bookError || transactionError)
+        return <p className="text-center mt-10 text-xl text-red-500">Error: {bookError || transactionError}</p>;
 
     return (
         <div className="w-[80%] h-[80%] my-auto p-6 mx-auto bg-white shadow-lg rounded-lg border border-gray-200">
@@ -31,7 +44,7 @@ const BookDetailsPage = () => {
                         <img
                             src={bookDetails.bookImage || "../../public/images/placeholder_book.png"}
                             alt={bookDetails.title}
-                            className="w-72 h-96  rounded-lg shadow-l object-fit"
+                            className="w-72 h-96 rounded-lg shadow-l object-fit"
                         />
                     </div>
 
@@ -43,34 +56,34 @@ const BookDetailsPage = () => {
                         <p className="text-gray-600">
                             <strong>Status:</strong>{' '}
                             <span
-                                className={`font-medium ${
-                                    bookDetails.availabilityStatus ? 'text-green-600' : 'text-red-600'
-                                }`}
+                                className={`font-medium ${bookDetails.availabilityStatus ? 'text-green-600' : 'text-red-600'
+                                    }`}
                             >
                                 {bookDetails.availabilityStatus ? 'Available' : 'Not Available'}
                             </span>
                         </p>
                         <div className="mt-6 flex space-x-4">
                             {/* Borrow Button */}
+
                             <button
                                 onClick={handleBorrow}
-                                disabled={!bookDetails.availabilityStatus}
+                                disabled={
+                                    !bookDetails.availabilityStatus ||
+                                    transactionLoading 
+                                }
                                 className={`px-4 py-2 font-medium text-white rounded-md ${
                                     bookDetails.availabilityStatus
                                         ? 'bg-blue-500 hover:bg-blue-600'
                                         : 'bg-gray-400 cursor-not-allowed'
                                 }`}
                             >
-                                Borrow
+                                {transactionLoading
+                                    ? 'Processing...'
+                                    : 'Borrow'}
                             </button>
 
-                            {/* Return Button */}
-                            {/* <button
-                                onClick={handleReturn}
-                                className="px-4 py-2 font-medium text-white bg-red-500 hover:bg-red-600 rounded-md"
-                            >
-                                Return
-                            </button> */}
+
+
                         </div>
                     </div>
                 </div>

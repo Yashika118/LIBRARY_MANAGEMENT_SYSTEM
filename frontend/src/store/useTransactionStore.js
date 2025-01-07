@@ -9,6 +9,8 @@ export const useTransactionStore=create((set,get)=>({
     transactions:[],
     isLoading:false,
     error:null,
+
+    //get all the users transactions
     getUserTransactions:async()=>{
         // set({isLoading:true,error:null})
         try {
@@ -19,6 +21,24 @@ export const useTransactionStore=create((set,get)=>({
             set({ error: "Failed to getting user transaction" });
         }
     },
+
+
+    //Borrow a book
+    borrowBook: async (bookId) => {
+        set({ isLoading: true, error: null });
+        try {
+            await axiosInstance.post("/transaction/borrow", { bookId });
+            console.log(`Book ${bookId} borrowed successfully.`);
+            get().getUserTransactions();
+        } catch (error) {
+            console.error("Error borrowing the book:", error.message);
+            set({ error: "Failed to borrow the book", isLoading: false });
+        } finally {
+            set({ isLoading: false });
+        }
+    },
+    
+    //return a book
     returnBook: async (transactionId) => {
         set({ isLoading: true, error: null });
         try {
