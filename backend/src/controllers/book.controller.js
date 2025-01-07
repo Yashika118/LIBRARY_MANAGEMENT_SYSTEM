@@ -11,6 +11,19 @@ export const getBooks = async (req, res) => {
     }
 }
 
+export const viewBook=async(req,res)=>{
+    const {id}=req.params;
+    try {
+        const book = await Book.findById(id);
+        if (!book) {
+            res.status(404).json({ message: "Book not found" });
+        }
+        res.status(200).json({data:book});
+    } catch (error) {
+        res.status(500).json({ message: "Failed to view book ", error: error.message });
+    }
+}
+
 export const addBook = async (req, res) => {
     const { title, author, publicationYear } = req.body;
     try {

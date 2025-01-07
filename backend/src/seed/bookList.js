@@ -31,37 +31,37 @@ const seedBooks = async () => {
         title: 'The Pragmatic Programmer',
         author: 'Andrew Hunt',
         publicationYear: 1999,
-        availability: true,
+        availabilityStatus: true,
       },
       {
         title: 'Clean Code',
         author: 'Robert C. Martin',
         publicationYear: 2008,
-        availability: true,
+        availabilityStatus: true,
       },
       {
         title: 'JavaScript: The Good Parts',
         author: 'Douglas Crockford',
         publicationYear: 2008,
-        availability: true,
+        availabilityStatus: true,
       },
       {
         title: 'You Don’t Know JS',
         author: 'Kyle Simpson',
         publicationYear: 2014,
-        availability: true,
+        availabilityStatus: true,
       },
       {
         title: 'Eloquent JavaScript',
         author: 'Marijn Haverbeke',
         publicationYear: 2018,
-        availability: true,
+        availabilityStatus: true,
       },
       {
         title: 'History of Golgappe',
         author: 'ynk',
         publicationYear: 2025,
-        availability: true,
+        availabilityStatus: true,
         
 
       },

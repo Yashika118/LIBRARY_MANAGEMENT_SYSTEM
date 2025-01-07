@@ -1,5 +1,5 @@
 import express from "express";
-import { addBook, deleteBook, getBooks, updateBook } from "../controllers/book.controller.js";
+import { addBook, deleteBook, getBooks, updateBook, viewBook } from "../controllers/book.controller.js";
 import authMiddleware from "../middleware/auth.middleware.js";
 import roleMiddleware from "../middleware/role.middleware.js";
 
@@ -8,6 +8,7 @@ import roleMiddleware from "../middleware/role.middleware.js";
 const router=express.Router();
 
 router.get("/getBooks",authMiddleware,getBooks); //login cahiye
+router.get("/viewBook/:id",authMiddleware,viewBook); //login cahiye
 
 
 
