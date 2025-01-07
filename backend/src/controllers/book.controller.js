@@ -18,7 +18,7 @@ export const viewBook=async(req,res)=>{
         if (!book) {
             res.status(404).json({ message: "Book not found" });
         }
-        res.status(200).json({data:book});
+        res.status(200).json(book);
     } catch (error) {
         res.status(500).json({ message: "Failed to view book ", error: error.message });
     }

@@ -27,18 +27,20 @@ const App = () => {
   }
 
   return (
-    <>
+    <div className='min-h-screen flex flex-col'>
       <Navbar />
-      <Routes>
-        <Route path="/" element={authUser ? <HomePage /> : <Navigate to="/login" />} />
-        <Route path="/signup" element={!authUser ? <SignUpPage /> : <Navigate to="/" />} />
-        <Route path="/login" element={!authUser ? <LoginPage /> : <Navigate to="/" />} />
-        <Route path="/books" element={authUser ? <Books /> : <Navigate to="/login" />} />
-        <Route path="/books/:id" element={authUser ? <BookDetailsPage /> : <Navigate to="/login" />} />
-      </Routes>
+      <div className='flex flex-grow'>
+        <Routes>
+          <Route path="/" element={authUser ? <HomePage /> : <Navigate to="/login" />} />
+          <Route path="/signup" element={!authUser ? <SignUpPage /> : <Navigate to="/" />} />
+          <Route path="/login" element={!authUser ? <LoginPage /> : <Navigate to="/" />} />
+          <Route path="/books" element={authUser ? <Books /> : <Navigate to="/login" />} />
+          <Route path="/books/:id" element={authUser ? <BookDetailsPage /> : <Navigate to="/login" />} />
+        </Routes>
+      </div>
       <Footer />
       <Toaster />
-    </>
+    </div>
   );
 };
 

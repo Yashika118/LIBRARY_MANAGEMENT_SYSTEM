@@ -27,15 +27,15 @@ const Navbar = () => {
                         <ul
                             tabIndex={0}
                             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-                            <li><a>Home</a></li>
-                            <li><a>Admin</a></li>
+                            <li><a href="/">Home</a></li>
+                            <li><a href="/admin">Admin</a></li>
                             <li><a href="/books">Books</a></li>
                         </ul>
                     </div>
                 )}
             </div>
             <div className="navbar-center">
-                <a className="btn btn-ghost text-2xl font-bold ">Infiniti Library</a>
+                <a href="/" className="btn btn-ghost text-2xl font-bold ">Infiniti Library</a>
             </div>
             <div className="navbar-end">
                 {authUser && (

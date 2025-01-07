@@ -40,7 +40,9 @@ export const useBookStore = create((set,get) => ({
         set({isLoading:true,error:null});
         try {
             const res=await axiosInstance.get(`/book/viewBook/${currentBookId}`);
+            // console.log(res);
             set({bookDetails:res.data});
+            
         } catch (error) {
             console.error("Error fetching book details:", error.message);
             set({ error: "Failed to load book details." });
