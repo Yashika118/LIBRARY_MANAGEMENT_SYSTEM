@@ -59,6 +59,22 @@ export const useBookStore = create((set,get) => ({
             console.error("Error adding book:", error.message);
             set({ error: error.response?.data?.message || "Failed to add book." });
         }
+    },
+    deleteBook:async()=>{
+        const currentBookId=get().currentBookId;
+        // console.log(currentBookId);
+        if (!currentBookId) {
+            console.error("No book ID provided");
+            set({ error: "No book ID provided." });
+            return;
+        }
+        try {
+            const res=await axiosInstance.delete(`book/deleteBook/${currentBookId}`)
+            set({bookDetails:res.data});
+        } catch (error) {
+            console.error("Error deleting book:", error.message);
+            set({ error: error.response?.data?.message || "Failed to delete book." });
+        }
     }
 
 }))

@@ -2,11 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useBookStore } from '../store/useBookStore.js';
 import { useTransactionStore } from '../store/useTransactionStore.js';
+import { useAuthStore } from '../store/useAuthStore.js';
+import { useNavigate } from 'react-router-dom';
+
 
 const BookDetailsPage = () => {
     const { id } = useParams();
-    const { bookDetails, viewBook, setCurrentBookId, isLoading: bookLoading, error: bookError } = useBookStore();
+    const { bookDetails, viewBook, setCurrentBookId,deleteBook, isLoading: bookLoading, error: bookError } = useBookStore();
     const { borrowBook, transactions, returnBook, isLoading: transactionLoading, error: transactionError } = useTransactionStore();
+    const { authUser }=useAuthStore();
+    const navigate = useNavigate();
 
 
     useEffect(() => {
@@ -29,6 +34,15 @@ const BookDetailsPage = () => {
         }
 
     };
+
+    const handleUpdate=async()=>{}
+
+
+    const handleDelete=async(e)=>{
+        e.preventDefault();
+        deleteBook();
+        setTimeout(() => navigate('/books'), 1500);
+    }
 
 
     if (bookLoading || transactionLoading) return <p className="text-center mt-10 text-xl">Loading...</p>;
@@ -82,7 +96,26 @@ const BookDetailsPage = () => {
                                     : 'Borrow'}
                             </button>
 
+                            {/* Admin Buttons */}
+                            {authUser?.role === 'admin' && (
+                                <>
+                                    {/* Update Button */}
+                                    <button
+                                        onClick={handleUpdate}
+                                        className="px-4 py-2 font-medium text-white bg-yellow-500 hover:bg-yellow-600 rounded-md"
+                                    >
+                                        Update
+                                    </button>
 
+                                    {/* Delete Button */}
+                                    <button
+                                        onClick={handleDelete}
+                                        className="px-4 py-2 font-medium text-white bg-red-500 hover:bg-red-600 rounded-md"
+                                    >
+                                        Delete
+                                    </button>
+                                </>
+                            )}
 
                         </div>
                     </div>
