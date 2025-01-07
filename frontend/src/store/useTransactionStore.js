@@ -53,6 +53,16 @@ export const useTransactionStore=create((set,get)=>({
         } finally {
             set({ isLoading: false });
         }
+    },
+
+    getAllTransactions:async()=>{
+        try {
+            const response=await axiosInstance.get("/transaction/allTransaction");
+            set({transactions:response.data});
+        } catch (error) {
+            console.error('Error fetching transactions:', error.message);
+            set({ error: 'Failed to fetch transactions. Please try again.' });
+        }
     }
 
 

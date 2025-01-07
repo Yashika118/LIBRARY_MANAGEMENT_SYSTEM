@@ -28,9 +28,11 @@ const Navbar = () => {
                             tabIndex={0}
                             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
                             <li><a href="/">Home</a></li>
-                            <li><a href="/admin">Admin</a></li>
                             <li><a href="/books">All Books</a></li>
                             <li><a href="/myBooks">My Books</a></li>
+                            {authUser.role==="admin" && (
+                                <li><a href="/admin">Admin</a></li>
+                            )}
                         </ul>
                     </div>
                 )}

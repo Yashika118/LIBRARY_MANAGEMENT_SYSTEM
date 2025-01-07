@@ -26,19 +26,22 @@ export const viewBook=async(req,res)=>{
 
 export const addBook = async (req, res) => {
     const { title, author, publicationYear } = req.body;
+    console.log(title);
     try {
         if (!title || !author || !publicationYear) {
             return res.status(400).json({ message: "All fields are required" });
         }
-        // if(bookImage){
-        //     const uploadResponse=await cloudinary.uploader.upload(bookImage);
-        // }
+        let bookImage = '';
+        if (req.file) {
+            const uploadResponse = await cloudinary.uploader.upload(req.file.path);
+            bookImage = uploadResponse.secure_url;
+        }
         const newBook = new Book({
             title,
             author,
             publicationYear,
             availabilityStatus: true,
-            // bookImage:uploadResponse || "",
+            bookImage:bookImage,
         });
 
         if (newBook) {

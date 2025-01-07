@@ -80,7 +80,7 @@ export const getUserTransactions = async (req, res) => {
 export const getAllTransactions=async(req,res)=>{
     try {
         const transactions=await Transaction.find();
-        res.status(200).json({data:transactions,count:transactions.length});
+        res.status(200).json(transactions);
     } catch (error) {
         console.log("Error in getting all transactions. ",error.message);
         res.status(500).json({message:"Failed to get all transactions , please try again later"});

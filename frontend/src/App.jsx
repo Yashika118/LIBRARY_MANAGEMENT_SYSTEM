@@ -10,6 +10,9 @@ import { useAuthStore } from './store/useAuthStore.js';
 import Books from './pages/Books.jsx';
 import BookDetailsPage from './pages/BookDetailsPage.jsx';
 import MyBooksPage from './pages/MyBooksPage.jsx';
+import AdminPanel from './pages/AdminPanel.jsx';
+import AddBookPage from './pages/AddBookPage.jsx';
+import TransactionsPage from './pages/TransactionPage.jsx';
 
 
 const App = () => {
@@ -31,7 +34,7 @@ const App = () => {
   return (
     <div className='min-h-screen flex flex-col'>
       <Navbar />
-      <div className='flex flex-grow'>
+      <div className='flex flex-col flex-grow'>
         <Routes>
           <Route path="/" element={authUser ? <HomePage /> : <Navigate to="/login" />} />
           <Route path="/signup" element={!authUser ? <SignUpPage /> : <Navigate to="/" />} />
@@ -39,6 +42,9 @@ const App = () => {
           <Route path="/books" element={authUser ? <Books /> : <Navigate to="/login" />} />
           <Route path="/books/:id" element={authUser ? <BookDetailsPage /> : <Navigate to="/login" />} />
           <Route path="/myBooks" element={authUser ? <MyBooksPage /> : <Navigate to="/login" />} />
+          <Route path="/admin" element={authUser ? <AdminPanel /> : <Navigate to="/login" />} />
+          <Route path="/add-book" element={<AddBookPage />} />
+          <Route path="/transactions" element={<TransactionsPage />} />
         </Routes>
       </div>
       <Footer />
