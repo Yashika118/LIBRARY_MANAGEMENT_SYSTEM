@@ -45,7 +45,7 @@ const seedBooks = async () => {
         title: "JavaScript: The Good Parts",
         author: "Douglas Crockford",
         publicationYear: 2008,
-        availabilityStatus: false,
+        availabilityStatus: true,
         bookImage: "https://images.unsplash.com/photo-1512820790803-83ca734da794",
       },
       {
@@ -66,7 +66,7 @@ const seedBooks = async () => {
         title: "Learning React",
         author: "Alex Banks",
         publicationYear: 2020,
-        availabilityStatus: false,
+        availabilityStatus: true,
         bookImage: "",
       },
       {
@@ -80,7 +80,7 @@ const seedBooks = async () => {
         title: "Introduction to Algorithms",
         author: "Thomas H. Cormen",
         publicationYear: 2009,
-        availabilityStatus: false,
+        availabilityStatus: true,
         bookImage: "",
       },
       {

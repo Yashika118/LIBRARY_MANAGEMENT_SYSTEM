@@ -15,6 +15,7 @@ export const borrowBook=async(req,res)=>{
                 bookId,
                 userId,
                 borrowDate:new Date(),
+                returnDate:null,
             }
         )
 
@@ -28,34 +29,52 @@ export const borrowBook=async(req,res)=>{
     }
 }
 
-export const returnBook=async(req,res)=>{
-    const {bookId}=req.body;
-    const userId=req.user.id;
+export const returnBook = async (req, res) => {
+    const { id: transactionId } = req.params; // Get transaction ID from params
+    const userId = req.user.id; // Get user ID from authenticated user
+
     try {
-        const transaction=await Transaction.findOne(
-            {
-                userId,
-                bookId,
-                returnDate:null
-            }
-        )
-        if(!transaction){
-            return res.status(400).json({message:"No active borrowed record found"});
+        // Find the transaction by transactionId and ensure it's borrowed by the current user
+        const transaction = await Transaction.findOne({
+            _id: transactionId,
+            userId,
+            returnDate: null,
+        });
+
+        if (!transaction) {
+            return res.status(400).json({ message: "No active borrowed record found for this transaction." });
         }
-        transaction.returnDate=new Date();
+
+        // Update returnDate
+        transaction.returnDate = new Date();
         await transaction.save();
-        const book=await Book.findById(bookId);
-        if(book){
-            book.availabilityStatus=true;
+
+        // Update the book's availability
+        const book = await Book.findById(transaction.bookId);
+        if (book) {
+            book.availabilityStatus = true;
             await book.save();
         }
 
-        res.status(200).json({message:"Book return successfully",data:transaction});
+        res.status(200).json({ message: "Book returned successfully", data: transaction });
     } catch (error) {
-        console.log("Error in returning a book. ",error.message);
-        res.status(500).json({message:"Failed to return book , please try again later"});
+        console.error("Error in returning a book:", error.message);
+        res.status(500).json({ message: "Failed to return book, please try again later." });
     }
-}
+};
+
+
+export const getUserTransactions = async (req, res) => {
+    try {
+        const userId = req.user.id; // Access user ID directly from req.user
+        const transactions = await Transaction.find({ userId, returnDate: null });
+        
+        res.status(200).json(transactions);
+    } catch (error) {
+        console.error("Error in getting user transactions: ", error.message);
+        res.status(500).json({ message: "Failed to get user transactions, please try again later" });
+    }
+};
 
 
 export const getAllTransactions=async(req,res)=>{
