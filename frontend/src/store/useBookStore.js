@@ -75,6 +75,20 @@ export const useBookStore = create((set,get) => ({
             console.error("Error deleting book:", error.message);
             set({ error: error.response?.data?.message || "Failed to delete book." });
         }
+    },
+    updateBook:async(data,id)=>{
+        
+        console.log(data);
+        console.log(id);
+        try {
+            const res=await axiosInstance.put(`book/updateBook/${id}`,data);
+            console.log(res.data);
+            set({bookDetails:res.data});
+        } catch (error) {
+            console.error("Error deleting book:", error.message);
+            set({ error: error.response?.data?.message || "Failed to delete book." });
+        }
+
     }
 
 }))

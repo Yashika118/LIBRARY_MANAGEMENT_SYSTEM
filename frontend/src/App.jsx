@@ -13,6 +13,7 @@ import MyBooksPage from './pages/MyBooksPage.jsx';
 import AdminPanel from './pages/AdminPanel.jsx';
 import AddBookPage from './pages/AddBookPage.jsx';
 import TransactionsPage from './pages/TransactionPage.jsx';
+import UpdateBookPage from './pages/UpdateBookPage.jsx';
 
 
 const App = () => {
@@ -45,6 +46,7 @@ const App = () => {
           <Route path="/admin" element={authUser ? <AdminPanel /> : <Navigate to="/login" />} />
           <Route path="/add-book" element={<AddBookPage />} />
           <Route path="/transactions" element={<TransactionsPage />} />
+          <Route path="/update-book/:id" element={<UpdateBookPage />} />
         </Routes>
       </div>
       <Footer />

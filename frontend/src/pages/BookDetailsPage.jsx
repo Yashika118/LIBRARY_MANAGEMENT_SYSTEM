@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useBookStore } from '../store/useBookStore.js';
 import { useTransactionStore } from '../store/useTransactionStore.js';
 import { useAuthStore } from '../store/useAuthStore.js';
 import { useNavigate } from 'react-router-dom';
+
 
 
 const BookDetailsPage = () => {
@@ -35,13 +36,11 @@ const BookDetailsPage = () => {
 
     };
 
-    const handleUpdate=async()=>{}
-
 
     const handleDelete=async(e)=>{
         e.preventDefault();
         deleteBook();
-        setTimeout(() => navigate('/books'), 1500);
+        setTimeout(() => navigate('/books'), 100);
     }
 
 
@@ -100,12 +99,15 @@ const BookDetailsPage = () => {
                             {authUser?.role === 'admin' && (
                                 <>
                                     {/* Update Button */}
+                                    <Link to={`/update-book/${id}`}>
                                     <button
-                                        onClick={handleUpdate}
+                                       
+                                        
                                         className="px-4 py-2 font-medium text-white bg-yellow-500 hover:bg-yellow-600 rounded-md"
                                     >
                                         Update
                                     </button>
+                                    </Link>
 
                                     {/* Delete Button */}
                                     <button
