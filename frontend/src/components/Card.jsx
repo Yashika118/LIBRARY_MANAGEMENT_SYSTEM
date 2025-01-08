@@ -7,7 +7,7 @@ const Card = (props) => {
         <div className="card bg-base-100 w-96 shadow-xl">
             <figure className="px-10 pt-10">
                 <img
-                    src={props.book.bookImage || "../../public/images/placeholder_book.png"}
+                    src={props.book.bookImage || PlaceholderBook}
                     alt={props.book.title || "Book Cover"}
                     className="rounded-xl h-52 object-cover w-full" />
             </figure>

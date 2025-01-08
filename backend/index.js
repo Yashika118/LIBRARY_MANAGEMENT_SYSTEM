@@ -31,23 +31,17 @@ app.use("/api/auth",authRouter);
 app.use("/api/book",bookRouter);
 app.use("/api/transaction",transactionRouter);
 
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', 'https://library-management-system-bx19cffw8-yashikas-projects-2f67044d.vercel.app');
-    res.header('Access-Control-Allow-Credentials', 'true');
-    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
-    next();
-});
 
 
-// if(process.env.NODE_ENV==="production"){
-//     app.use(express.static(path.join(__dirname,"../frontend/dist")));
+
+if(process.env.NODE_ENV==="production"){
+    app.use(express.static(path.join(__dirname,"../frontend/dist")));
 
 
-//     app.get("*",(req,res)=>{
-//         res.sendFile(path.join(__dirname,"../frontend","dist","index.html"))
-//     })
-// }
+    app.get("*",(req,res)=>{
+        res.sendFile(path.join(__dirname,"../frontend","dist","index.html"))
+    })
+}
 
 
 
