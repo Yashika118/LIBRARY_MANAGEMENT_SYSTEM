@@ -4,6 +4,8 @@ import { useBookStore } from '../store/useBookStore.js';
 import { useTransactionStore } from '../store/useTransactionStore.js';
 import { useAuthStore } from '../store/useAuthStore.js';
 import { useNavigate } from 'react-router-dom';
+import PlaceholderBook from "../../public/images/placeholder_book2.jpg"
+
 
 
 
@@ -55,7 +57,7 @@ const BookDetailsPage = () => {
                     {/* Book Image Section */}
                     <div className="flex justify-center">
                         <img
-                            src={bookDetails.bookImage || "../../public/images/placeholder_book.png"}
+                            src={bookDetails.bookImage || PlaceholderBook}
                             alt={bookDetails.title}
                             className="w-72 h-96 rounded-lg shadow-l object-fit"
                         />

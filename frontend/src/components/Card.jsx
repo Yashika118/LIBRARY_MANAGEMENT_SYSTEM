@@ -1,5 +1,5 @@
 import React from 'react'
-import PlaceholderBook from "../../public/images/placeholder_book.png"
+import PlaceholderBook from "../../public/images/placeholder_book2.jpg"
 import { Link } from 'react-router-dom'
 
 const Card = (props) => {
