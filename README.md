@@ -138,7 +138,7 @@ Follow the steps below to run the project locally:
    - **User:** View and borrow books.
    - **Admin:** Manage books and view transaction history.
 - **State Management with Zustand:** Efficient and lightweight state management.
-- **Responsive UI:** Tailwind CSS ensures a clean and responsive design.
+- **Responsive UI:** Tailwind CSS to ensures a clean and responsive design.
 - **Real-time Updates:** Immediate feedback with Hot Toast.
 - **API Verification with Postman:** Extensive testing and verification of API endpoints.
 
