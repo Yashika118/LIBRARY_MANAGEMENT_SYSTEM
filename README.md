@@ -156,8 +156,7 @@ Follow the steps below to run the project locally:
 
 ## 🎥 Video Demonstration
 Watch the full project demonstration here:
-[Watch on YouTube]([https://www.youtube.com/your-video-link](https://youtu.be/6Fr8ELTGnEc))
-
+[Watch on YouTube](https://youtu.be/6Fr8ELTGnEc)
 ---
 
 ## 🤝 Contribution
