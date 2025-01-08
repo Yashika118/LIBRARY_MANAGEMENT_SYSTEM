@@ -59,7 +59,7 @@ export const addBook = async (req, res) => {
 
 export const updateBook = async (req, res) => {
     const { id } = req.params;
-    const { title, author, publicationYear, availabilityStatus } = req.body;
+    const { title, author, publicationYear, availabilityStatus ,bookImage} = req.body;
     
     try {
         const book = await Book.findById(id);
@@ -67,10 +67,17 @@ export const updateBook = async (req, res) => {
             res.status(404).json({ message: "Book not found" });
         }
 
+        let bookImageLink = '';
+        if (bookImage) {
+            const uploadResponse = await cloudinary.uploader.upload(bookImage);
+            bookImageLink = uploadResponse.secure_url;
+        }
+
         book.title = title || book.title;
         book.author = author || book.author;
         book.publicationYear = publicationYear || book.publicationYear;
         book.availabilityStatus = availabilityStatus || book.availabilityStatus;
+        book.bookImage=bookImageLink;
 
         const updateBook = await book.save();
         res.status(200).json(updateBook);

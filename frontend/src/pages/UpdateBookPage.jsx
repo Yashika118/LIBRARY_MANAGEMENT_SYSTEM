@@ -26,12 +26,35 @@ const UpdateBookPage = () => {
         }));
     };
 
+    //handle image upload
+    const handleImageUpload = async (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        if (file.size > 500 * 1024) {
+          toast.error("File size exceeds 500 KB. Please upload a smaller file.");
+          return;
+        }
+    
+        const reader = new FileReader();
+    
+        reader.readAsDataURL(file);
+    
+        reader.onload = async () => {
+          const base64Image = reader.result;
+          setFormData((prev)=>({
+            ...prev,
+            bookImage:base64Image,
+            
+          }))
+        };
+      };
+
     // 🚀 Handle Form Submission
     const handleSubmit = async (e) => {
         e.preventDefault();
         
         updateBook(formData,id);
-        setTimeout(() => navigate('/books'), 1500);
+        setTimeout(() => navigate('/books'), 2500);
     };
 
     return (
@@ -99,7 +122,7 @@ const UpdateBookPage = () => {
                         <input
                             type="file"
                             name="bookImage"
-                            onChange={handleChange}
+                            onChange={handleImageUpload}
                             className="input input-bordered w-full"
                             accept="image/*"
                         />
