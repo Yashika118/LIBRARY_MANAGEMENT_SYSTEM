@@ -6,12 +6,16 @@ import cookieParser from "cookie-parser";
 import bookRouter from "./src/routes/book.route.js";
 import transactionRouter from "./src/routes/transaction.route.js";
 import cors from "cors";
+import path from "path";
+
 
 
 dotenv.config();
 
 const app=express();
 const port=process.env.PORT;
+const __dirname=path.resolve();
+
 
 
 
@@ -29,7 +33,14 @@ app.use("/api/transaction",transactionRouter);
 
 
 
+if(process.env.NODE_ENV==="production"){
+    app.use(express.static(path.join(__dirname,"../frontend/dist")));
 
+
+    app.get("*",(req,res)=>{
+        res.sendFile(path.join(__dirname,"../frontend","dist","index.html"))
+    })
+}
 
 
 
