@@ -4,6 +4,12 @@ An online library management application built with the **MERN stack** (MongoDB,
 
 ---
 
+## 🌐 Live Demo
+You can view the live version of the **Infiniti Library** here:
+👉 [Live Website](https://library-management-system-7vtt.onrender.com/)
+
+---
+
 ## 🚀 Technologies Used
 
 - **MongoDB**: NoSQL database for flexible and scalable data storage.
