@@ -155,10 +155,8 @@ Follow the steps below to run the project locally:
 ---
 
 ## 🎥 Video Demonstration
-<video width="600" controls>
-  <source src="./videos/demo.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+Watch the full project demonstration here:
+[Watch on YouTube]([https://www.youtube.com/your-video-link](https://youtu.be/6Fr8ELTGnEc))
 
 ---
 
