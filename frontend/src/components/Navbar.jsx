@@ -49,11 +49,7 @@ const Navbar = () => {
                 <a href="/" className="btn btn-ghost text-2xl font-bold ">Infiniti Library</a>
             </div>
             <div className="navbar-end">
-                {/* {authUser && (
-                    <div className="form-control hidden mx-2 md:block">
-                        <input type="text" placeholder="Search" className="input input-bordered w-24 md:w-auto" />
-                    </div>
-                )} */}
+                
 
                 {!authUser && (
                     <Link to="/login" className="btn   mr-2 md:mx-2 text-[16px] btn-accent">Login</Link>

@@ -51,13 +51,17 @@ export const useBookStore = create((set,get) => ({
         }
     },
     addBook:async(data)=>{
+        set({isLoading:true,error:null});
         try {
             
             const res=await axiosInstance.post("/book/addBook",data);
             set({bookDetails:res.data});
+            // console.log(data);
         } catch (error) {
             console.error("Error adding book:", error.message);
             set({ error: error.response?.data?.message || "Failed to add book." });
+        }finally{
+            set({isLoading:false});
         }
     },
     deleteBook:async()=>{

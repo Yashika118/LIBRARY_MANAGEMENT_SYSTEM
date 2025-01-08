@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useBookStore } from '../store/useBookStore';
+import toast from "react-hot-toast";
 
 const AddBookPage = () => {
     const { addBook, isLoading, error } = useBookStore();
@@ -22,6 +23,29 @@ const AddBookPage = () => {
         }));
     };
 
+    //handle image upload
+    const handleImageUpload = async (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        if (file.size > 500 * 1024) {
+          toast.error("File size exceeds 500 KB. Please upload a smaller file.");
+          return;
+        }
+    
+        const reader = new FileReader();
+    
+        reader.readAsDataURL(file);
+    
+        reader.onload = async () => {
+          const base64Image = reader.result;
+          setFormData((prev)=>({
+            ...prev,
+            bookImage:base64Image,
+            
+          }))
+        };
+      };
+
     // 🚀 Handle Form Submission
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -35,7 +59,9 @@ const AddBookPage = () => {
         addBook(formData);
 
 
-        setTimeout(() => navigate('/books'), 1000);
+        setTimeout(() => navigate('/books'), 1500);
+
+        // console.log(formData);
 
     };
 
@@ -107,7 +133,7 @@ const AddBookPage = () => {
                         <input
                             type="file"
                             name="bookImage"
-                            onChange={handleChange}
+                            onChange={handleImageUpload}
                             className="input input-bordered w-full"
                             accept="image/*"
                         />
@@ -123,6 +149,7 @@ const AddBookPage = () => {
                             }`}
                         >
                             {isLoading ? 'Adding Book...' : 'Add Book'}
+                            
                         </button>
                     </div>
                 </form>

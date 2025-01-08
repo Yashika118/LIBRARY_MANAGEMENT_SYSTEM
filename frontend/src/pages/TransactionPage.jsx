@@ -9,7 +9,7 @@ const TransactionsPage = () => {
     }, [getAllTransactions]);
 
     if (isLoading) {
-        return <p className="text-center mt-10 text-xl">Loading transactions...</p>;
+        return <p className=" text-center mt-10 text-xl">Loading transactions...</p>;
     }
 
     if (error) {
