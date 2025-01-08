@@ -140,7 +140,7 @@ Follow the steps below to run the project locally:
 - **State Management with Zustand:** Efficient and lightweight state management.
 - **Responsive UI:** Tailwind CSS ensures a clean and responsive design.
 - **Real-time Updates:** Immediate feedback with Hot Toast.
-- **API Verification with Postman:** Extensive testing and verification of API endpoints.
+- **API Verification with Postman:** Extensive testing and verification of API endpoints
 
 ---
 
