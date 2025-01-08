@@ -50,11 +50,11 @@ export const useBookStore = create((set,get) => ({
             set({isLoading:false});
         }
     },
-    addBook:async(bookData)=>{
+    addBook:async(data)=>{
         try {
             
-            const res=await axiosInstance.post("/book/addBook");
-            
+            const res=await axiosInstance.post("/book/addBook",data);
+            set({bookDetails:res.data});
         } catch (error) {
             console.error("Error adding book:", error.message);
             set({ error: error.response?.data?.message || "Failed to add book." });

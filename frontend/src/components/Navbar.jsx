@@ -30,8 +30,16 @@ const Navbar = () => {
                             <li><a href="/">Home</a></li>
                             <li><a href="/books">All Books</a></li>
                             <li><a href="/myBooks">My Books</a></li>
-                            {authUser.role==="admin" && (
-                                <li><a href="/admin">Admin</a></li>
+                            {authUser.role === "admin" && (
+
+                                // <li><a href="/admin">Admin</a></li>
+                                <li>
+                                    <a>Admin Controls</a>
+                                    <ul className="p-2">
+                                        <li><a href="/add-book">Add a Book</a></li>
+                                        <li><a href="/transactions">View all Transactions</a></li>
+                                    </ul>
+                                </li>
                             )}
                         </ul>
                     </div>
@@ -41,11 +49,11 @@ const Navbar = () => {
                 <a href="/" className="btn btn-ghost text-2xl font-bold ">Infiniti Library</a>
             </div>
             <div className="navbar-end">
-                {authUser && (
+                {/* {authUser && (
                     <div className="form-control hidden mx-2 md:block">
                         <input type="text" placeholder="Search" className="input input-bordered w-24 md:w-auto" />
                     </div>
-                )}
+                )} */}
 
                 {!authUser && (
                     <Link to="/login" className="btn   mr-2 md:mx-2 text-[16px] btn-accent">Login</Link>

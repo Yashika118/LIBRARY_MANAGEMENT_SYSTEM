@@ -13,7 +13,7 @@ const AddBookPage = () => {
     const [success, setSuccess] = useState('');
     const navigate = useNavigate();
 
-    // Handle Form Changes
+    // 📝 Handle Form Changes
     const handleChange = (e) => {
         const { name, value, files } = e.target;
         setFormData((prev) => ({
@@ -22,110 +22,120 @@ const AddBookPage = () => {
         }));
     };
 
-    // Handle Form Submission
+    // 🚀 Handle Form Submission
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setSuccess('');
+        
 
         if (!formData.title || !formData.author || !formData.publicationYear) {
             alert('Please fill in all required fields.');
             return;
         }
 
-        try {
-            await addBook(formData);
-            setSuccess('Book added successfully!');
-            setTimeout(() => navigate('/books'), 1500); // Redirect to books page
-        } catch (err) {
-            console.error('Failed to add book:', err.message);
-        }
+        addBook(formData);
+
+
+        setTimeout(() => navigate('/books'), 1000);
+
     };
 
     return (
-        <div className="max-w-2xl mx-auto mt-10 p-6 bg-white shadow-md rounded-md">
-            <h1 className="text-3xl font-bold mb-6 text-center">Add a New Book</h1>
+        <div className="flex justify-center items-center min-h-screen bg-gray-100">
+            <div className="card w-full max-w-md shadow-xl bg-white p-6 rounded-lg">
+                <h2 className="text-2xl font-bold text-center mb-4">Add New Book</h2>
 
-            {/* Success Message */}
-            {success && <p className="text-green-500 text-center mb-4">{success}</p>}
+                {/* ✅ Success Message */}
+                {success && <p className="text-green-500 text-center mb-4">{success}</p>}
 
-            {/* Error Message */}
-            {error && <p className="text-red-500 text-center mb-4">{error}</p>}
+                {/* ❌ Error Message */}
+                {error && <p className="text-red-500 text-center mb-4">{error}</p>}
 
-            {/* Book Form */}
-            <form onSubmit={handleSubmit} encType="multipart/form-data">
-                {/* Title Field */}
-                <div className="mb-4">
-                    <label className="block text-gray-700 font-medium">Title</label>
-                    <input
-                        type="text"
-                        name="title"
-                        value={formData.title}
-                        onChange={handleChange}
-                        className="w-full mt-1 p-2 border rounded-md"
-                        required
-                    />
-                </div>
+                <form onSubmit={handleSubmit} className="space-y-4" encType="multipart/form-data">
+                    {/* Title Field */}
+                    <div>
+                        <label className="label">
+                            <span className="label-text">Title</span>
+                        </label>
+                        <input
+                            type="text"
+                            name="title"
+                            value={formData.title}
+                            placeholder="Enter book title"
+                            className="input input-bordered w-full"
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
 
-                {/* Author Field */}
-                <div className="mb-4">
-                    <label className="block text-gray-700 font-medium">Author</label>
-                    <input
-                        type="text"
-                        name="author"
-                        value={formData.author}
-                        onChange={handleChange}
-                        className="w-full mt-1 p-2 border rounded-md"
-                        required
-                    />
-                </div>
+                    {/* Author Field */}
+                    <div>
+                        <label className="label">
+                            <span className="label-text">Author</span>
+                        </label>
+                        <input
+                            type="text"
+                            name="author"
+                            value={formData.author}
+                            placeholder="Enter author name"
+                            className="input input-bordered w-full"
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
 
-                {/* Publication Year Field */}
-                <div className="mb-4">
-                    <label className="block text-gray-700 font-medium">Publication Year</label>
-                    <input
-                        type="number"
-                        name="publicationYear"
-                        value={formData.publicationYear}
-                        onChange={handleChange}
-                        className="w-full mt-1 p-2 border rounded-md"
-                        required
-                    />
-                </div>
+                    {/* Publication Year Field */}
+                    <div>
+                        <label className="label">
+                            <span className="label-text">Publication Year</span>
+                        </label>
+                        <input
+                            type="number"
+                            name="publicationYear"
+                            value={formData.publicationYear}
+                            placeholder="Enter publication year"
+                            className="input input-bordered w-full"
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
 
-                {/* Book Image Field */}
-                <div className="mb-4">
-                    <label className="block text-gray-700 font-medium">Book Image (Optional)</label>
-                    <input
-                        type="file"
-                        name="bookImage"
-                        onChange={handleChange}
-                        className="w-full mt-1 p-2 border rounded-md"
-                        accept="image/*"
-                    />
-                </div>
+                    {/* Book Image Field */}
+                    <div>
+                        <label className="label">
+                            <span className="label-text">Book Image (Optional)</span>
+                        </label>
+                        <input
+                            type="file"
+                            name="bookImage"
+                            onChange={handleChange}
+                            className="input input-bordered w-full"
+                            accept="image/*"
+                        />
+                    </div>
 
-                {/* Submit Button */}
-                <button
-                    type="submit"
-                    disabled={isLoading}
-                    className={`w-full mt-4 py-2 px-4 text-white font-semibold rounded-md ${
-                        isLoading
-                            ? 'bg-gray-400 cursor-not-allowed'
-                            : 'bg-green-500 hover:bg-green-600'
-                    }`}
-                >
-                    {isLoading ? 'Adding Book...' : 'Add Book'}
-                </button>
-            </form>
+                    {/* Submit Button */}
+                    <div className="mt-4">
+                        <button
+                            type="submit"
+                            disabled={isLoading}
+                            className={`btn btn-primary w-full ${
+                                isLoading ? 'opacity-50 cursor-not-allowed' : ''
+                            }`}
+                        >
+                            {isLoading ? 'Adding Book...' : 'Add Book'}
+                        </button>
+                    </div>
+                </form>
 
-            {/* Back Button */}
-            <div className="text-center mt-4">
-                <button
-                    onClick={() => navigate('/admin')}
-                    className="text-blue-500 hover:underline"
-                >
-                    ← Back to Admin Panel
-                </button>
+                {/* Back Button */}
+                <p className="text-center mt-4 text-sm">
+                    <button
+                        onClick={() => navigate('/books')}
+                        className="text-blue-500 hover:underline"
+                    >
+                        ← Back to Book List
+                    </button>
+                </p>
             </div>
         </div>
     );
