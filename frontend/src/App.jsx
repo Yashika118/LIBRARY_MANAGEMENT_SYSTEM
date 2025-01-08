@@ -45,7 +45,7 @@ const App = () => {
           <Route path="/myBooks" element={authUser ? <MyBooksPage /> : <Navigate to="/login" />} />
           <Route path="/admin" element={authUser ? <AdminPanel /> : <Navigate to="/login" />} />
           <Route path="/add-book" element={<AddBookPage />} />
-          <Route path="/transactions" element={<TransactionsPage />} />
+          <Route path="/transactions" element={authUser?.role==="admin" ? <TransactionsPage /> : <HomePage/>   } />
           <Route path="/update-book/:id" element={<UpdateBookPage />} />
         </Routes>
       </div>
