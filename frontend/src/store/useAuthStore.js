@@ -3,7 +3,7 @@ import { persist, createJSONStorage } from "zustand/middleware";
 import { axiosInstance } from "../lib/axios";
 import toast from "react-hot-toast";
 
-const BASE_URL = import.meta.env.MODE === "development" ? "https://library-management-system-2-n81x.onrender.com/api" : "/api";
+const BASE_URL = import.meta.env.MODE === "development" ? "http://localhost:3000/api" : "/api";
 
 export const useAuthStore = create(
     persist(

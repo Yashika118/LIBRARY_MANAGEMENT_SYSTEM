@@ -2,7 +2,7 @@ import { create } from "zustand";
 import { axiosInstance } from "../lib/axios";
 import axios from "axios";
 
-const BASE_URL = import.meta.env.MODE === "development" ? "https://library-management-system-2-n81x.onrender.com/api" : "/api";
+const BASE_URL = import.meta.env.MODE === "development" ? "http://localhost:3000/api" : "/api";
 
 export const useBookStore = create((set,get) => ({
     books: [],

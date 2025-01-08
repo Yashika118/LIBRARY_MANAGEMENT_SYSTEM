@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const axiosInstance=axios.create({
-    baseURL:import.meta.env.MODE==="development"?"https://library-management-system-2-n81x.onrender.com/api" : "https://library-management-system-2-n81x.onrender.com/api",
+    baseURL:import.meta.env.MODE==="development"?"http://localhost:3000/api" : "/api",
     withCredentials:true,
 })
 
