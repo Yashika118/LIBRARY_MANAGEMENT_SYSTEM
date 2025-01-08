@@ -133,7 +133,7 @@ Follow the steps below to run the project locally:
      - **Books:** title, author, publication year, availability status.
      - **Users:** name, contact info.
      - **Transactions:** book ID, user ID, borrow/return date.
-- **User Authentication:** Secure login and registration.
+- **User Authentication:** Secure login and registrations.
 - **Authorization Levels:** Two levels of authorization - **User** and **Admin**.
    - **User:** View and borrow books.
    - **Admin:** Manage books and view transaction history.
