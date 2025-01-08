@@ -103,7 +103,9 @@ const BookDetailsPage = () => {
                                     <button
                                        
                                         
-                                        className="px-4 py-2 font-medium text-white bg-yellow-500 hover:bg-yellow-600 rounded-md"
+                                        className={`px-4 py-2 font-medium text-white bg-yellow-500 hover:bg-yellow-600 rounded-md ${bookDetails.availabilityStatus
+                                            ? ''
+                                            : 'bg-gray-400 cursor-not-allowed'}`}
                                     >
                                         Update
                                     </button>
@@ -112,7 +114,9 @@ const BookDetailsPage = () => {
                                     {/* Delete Button */}
                                     <button
                                         onClick={handleDelete}
-                                        className="px-4 py-2 font-medium text-white bg-red-500 hover:bg-red-600 rounded-md"
+                                        className={`px-4 py-2 font-medium text-white bg-red-500 hover:bg-red-600 rounded-md ${bookDetails.availabilityStatus
+                                            ? ''
+                                            : 'bg-gray-400 cursor-not-allowed'}`}
                                     >
                                         Delete
                                     </button>

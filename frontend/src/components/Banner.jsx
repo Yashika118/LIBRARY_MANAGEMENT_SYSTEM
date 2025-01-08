@@ -21,7 +21,7 @@ const Banner = () => {
                     </div>
 
                     {/* secondary btn */}
-                    <button className="btn btn-accent my-10 font-bold text-[16px]">Become an admin</button>
+                    {/* <button className="btn btn-accent my-10 font-bold text-[16px]">Become an admin</button> */}
                 </div>
                 <div className='order-1 w-full mt-16 md:w-1/2'>
                     <img src={BANNER} alt="banner" className='w-[350px] h-[300px] md:w-[550px] md:h-[500px]'  />
