@@ -10,7 +10,6 @@ import { useAuthStore } from './store/useAuthStore.js';
 import Books from './pages/Books.jsx';
 import BookDetailsPage from './pages/BookDetailsPage.jsx';
 import MyBooksPage from './pages/MyBooksPage.jsx';
-import AdminPanel from './pages/AdminPanel.jsx';
 import AddBookPage from './pages/AddBookPage.jsx';
 import TransactionsPage from './pages/TransactionPage.jsx';
 import UpdateBookPage from './pages/UpdateBookPage.jsx';
@@ -42,9 +41,7 @@ const App = () => {
           <Route path="/login" element={!authUser ? <LoginPage /> : <Navigate to="/" />} />
           <Route path="/books" element={authUser ? <Books /> : <Navigate to="/login" />} />
           <Route path="/books/:id" element={authUser ? <BookDetailsPage /> : <Navigate to="/login" />} />
-          <Route path="/myBooks" element={authUser ? <MyBooksPage /> : <Navigate to="/login" />} />
-          <Route path="/admin" element={authUser ? <AdminPanel /> : <Navigate to="/login" />} />
-          <Route path="/add-book" element={<AddBookPage />} />
+          <Route path="/myBooks" element={authUser ? <MyBooksPage /> : <Navigate to="/login" />} />          <Route path="/add-book" element={<AddBookPage />} />
           <Route path="/transactions" element={authUser?.role==="admin" ? <TransactionsPage /> : <HomePage/>   } />
           <Route path="/update-book/:id" element={<UpdateBookPage />} />
         </Routes>
