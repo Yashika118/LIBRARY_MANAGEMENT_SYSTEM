@@ -5,7 +5,7 @@ import axios from "axios";
 const BASE_URL = import.meta.env.MODE === "development" ? "http://localhost:3000/api" : "/api";
 
 export const useBookStore = create((set,get) => ({
-    books: [],
+    books: [],                                          // backend m db m jo books h unko hum array m store krenge in frontend
     isLoading: false,
     error: null,
     bookDetails:null,
@@ -21,7 +21,7 @@ export const useBookStore = create((set,get) => ({
             const res = await axiosInstance.get("/book/getBooks");
             set({ books: res.data });
         } catch (error) {
-            console.error("Error fetching books:", error.message);
+            console.error("Error in getting books:", error.message);
             set({ error: "Failed to load books." });
         }
         finally {
@@ -54,7 +54,7 @@ export const useBookStore = create((set,get) => ({
         set({isLoading:true,error:null});
         try {
             
-            const res=await axiosInstance.post("/book/addBook",data);
+            const res=await axiosInstance.post("/book/addBook",data);               // data ---> coming from AddBookPage.jsx
             set({bookDetails:res.data});
             // console.log(data);
         } catch (error) {
@@ -74,7 +74,7 @@ export const useBookStore = create((set,get) => ({
         }
         try {
             const res=await axiosInstance.delete(`book/deleteBook/${currentBookId}`)
-            set({bookDetails:res.data});
+            set({bookDetails:res.data});            // for our showcase
         } catch (error) {
             console.error("Error deleting book:", error.message);
             set({ error: error.response?.data?.message || "Failed to delete book." });

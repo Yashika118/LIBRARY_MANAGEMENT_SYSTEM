@@ -10,7 +10,7 @@ import PlaceholderBook from "../../public/images/placeholder_book2.jpg"
 
 
 const BookDetailsPage = () => {
-    const { id } = useParams();
+    const { id } = useParams();                     // frontend se useParams se nikalte h id ko instead req.params
     const { bookDetails, viewBook, setCurrentBookId,deleteBook, isLoading: bookLoading, error: bookError } = useBookStore();
     const { borrowBook, transactions, returnBook, isLoading: transactionLoading, error: transactionError } = useTransactionStore();
     const { authUser }=useAuthStore();
@@ -19,7 +19,7 @@ const BookDetailsPage = () => {
 
     useEffect(() => {
         setCurrentBookId(id);
-        viewBook();
+        viewBook();                                             // useBookStore.js
     }, [id, viewBook, setCurrentBookId]);
 
 
@@ -27,7 +27,7 @@ const BookDetailsPage = () => {
     const handleBorrow = async () => {
         
         try {
-            await borrowBook(id);
+            await borrowBook(id);                               // useTransactionStore.js
             console.log('Book Borrowed:', bookDetails.title);
         } catch (error) {
             console.error('Failed to borrow book:', error.message);
@@ -41,8 +41,8 @@ const BookDetailsPage = () => {
 
     const handleDelete=async(e)=>{
         e.preventDefault();
-        deleteBook();
-        setTimeout(() => navigate('/books'), 100);
+        deleteBook();                                           // useBookStore.js
+        setTimeout(() => navigate('/books'), 100);               
     }
 
 
