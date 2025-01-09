@@ -18,7 +18,7 @@ const SignUpPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
+    // console.log(formData);
     
     if (!formData.fullname.trim()) return toast.error("Fullname is required ");
     if (!formData.email.trim()) return toast.error("Email is required ");

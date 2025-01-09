@@ -10,8 +10,8 @@ const MyBooksPage = () => {
 
   const handleReturn = async (transactionId) => {
     try {
-      await returnBook(transactionId); // Call the store function to return the book
-      getUserTransactions(); // Refresh transactions after returning the book
+      await returnBook(transactionId);                // Call the useTransactionStore  to return the book
+      getUserTransactions();                          // Refresh transactions after returning the book
     } catch (error) {
       console.error('Error returning the book:', error);
     }
@@ -25,6 +25,7 @@ const MyBooksPage = () => {
       {/* Check if transactions exist */}
       {transactions?.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+
           {transactions.map((transaction) => (
             <div
               key={transaction._id}

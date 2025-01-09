@@ -10,9 +10,8 @@ export const useTransactionStore=create((set,get)=>({
     isLoading:false,
     error:null,
 
-    //get all the users transactions
+    //get all transactions of a particular user to show on my book page
     getUserTransactions:async()=>{
-        // set({isLoading:true,error:null})
         try {
             const res=await axiosInstance.get("/transaction/getUserTransactions");
             set({transactions:res.data});

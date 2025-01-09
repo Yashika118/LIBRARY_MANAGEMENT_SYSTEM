@@ -68,7 +68,7 @@ export const returnBook = async (req, res) => {
 
 export const getUserTransactions = async (req, res) => {
     try {
-        const userId = req.user.id; // Access user ID directly from req.user
+        const userId = req.user.id;                     // Access user ID directly from req.user stored on browser
         const transactions = await Transaction.find({ userId, returnDate: null });
         
         res.status(200).json(transactions);

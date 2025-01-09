@@ -9,3 +9,8 @@ status code:
 401 ---> resource ke pas valid authentication nhi h
 
 500 ---> internal server error
+
+
+html element :
+
+strong ----> bold the text inside it
