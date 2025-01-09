@@ -1,6 +1,8 @@
 import Transaction from "../models/transaction.model.js";
 import Book from "../models/book.model.js";
 
+
+//  borrow a particular book
 export const borrowBook=async(req,res)=>{
     const {bookId}=req.body;
     const userId=req.user.id;

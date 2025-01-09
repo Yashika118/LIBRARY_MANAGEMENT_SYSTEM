@@ -1,7 +1,7 @@
 import cloudinary from "../lib/cloudinary.js";
 import Book from "../models/book.model.js";
 
-
+//  sari books milengi
 export const getBooks = async (req, res) => {
     try {
         const book = await Book.find();
@@ -11,6 +11,8 @@ export const getBooks = async (req, res) => {
     }
 }
 
+
+// view a particular book
 export const viewBook=async(req,res)=>{
     const {id}=req.params;
     try {
@@ -24,17 +26,26 @@ export const viewBook=async(req,res)=>{
     }
 }
 
+
+
+
+// admin only ------------>
+
+// add a particular book
+
 export const addBook = async (req, res) => {
     const { title, author, publicationYear,bookImage } = req.body;
     try {
         if (!title || !author || !publicationYear) {
             return res.status(400).json({ message: "All fields are required" });
         }
+
         let bookImageLink = '';
         if (bookImage) {
             const uploadResponse = await cloudinary.uploader.upload(bookImage);
             bookImageLink = uploadResponse.secure_url;
         }
+
         const newBook = new Book({
             title,
             author,
@@ -57,6 +68,8 @@ export const addBook = async (req, res) => {
     }
 }
 
+
+//  update a particular book
 export const updateBook = async (req, res) => {
     const { id } = req.params;
     const { title, author, publicationYear, availabilityStatus ,bookImage} = req.body;
@@ -88,6 +101,9 @@ export const updateBook = async (req, res) => {
     }
 }
 
+
+
+// delete a book
 export const deleteBook = async (req, res) => {
     const { id } = req.params;
     try {

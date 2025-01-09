@@ -149,8 +149,8 @@ Follow the steps below to run the project locally:
 ### 📷 Home Page
 <img src="./screenshots/home.png" alt="Home Page" width="600"/>
 
-### 📷 Login Page
-<img src="./screenshots/signup.png" alt="Signup Page" width="600"/>
+### 📷 Signup Page
+<img src="./screenshots/signup2.png" alt="Signup Page" width="600"/>
 
 ### 📷 All Books Page
 <img src="./screenshots/allbooks.png" alt="All Books Page" width="600"/>
