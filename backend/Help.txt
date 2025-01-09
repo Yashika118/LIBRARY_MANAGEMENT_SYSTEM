@@ -1,0 +1,11 @@
+status code:
+
+200 ---> req successfully
+
+201 ---> req successfully and newdata created successfully
+
+400 ---> client ki galti
+
+401 ---> resource ke pas valid authentication nhi h
+
+500 ---> internal server error

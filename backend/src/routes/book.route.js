@@ -7,8 +7,10 @@ import roleMiddleware from "../middleware/role.middleware.js";
 
 const router=express.Router();
 
-router.get("/getBooks",authMiddleware,getBooks); //login cahiye
-router.get("/viewBook/:id",authMiddleware,viewBook); //login cahiye
+// for all users
+
+router.get("/getBooks",authMiddleware,getBooks); 
+router.get("/viewBook/:id",authMiddleware,viewBook); 
 
 
 

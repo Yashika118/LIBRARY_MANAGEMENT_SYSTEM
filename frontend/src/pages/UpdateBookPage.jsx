@@ -59,7 +59,7 @@ const UpdateBookPage = () => {
 
     return (
         <div className="flex justify-center items-center min-h-screen bg-gray-100">
-            <div className="card w-full max-w-md shadow-xl bg-white p-6 rounded-lg">
+            <div className="card w-full max-w-md shadow-xl bg-white p-6 rounded-lg mt-20">
                 <h2 className="text-2xl font-bold text-center mb-4">Update Book</h2>
 
                 {/* ✅ Success Message */}

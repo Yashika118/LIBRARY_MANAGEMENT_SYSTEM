@@ -8,8 +8,13 @@ const authMiddleware=async(req,res,next)=>{
         return res.status(401).json({message:"Not authenticated"});
     }
     try {
-        const decoded=jwt.verify(token,process.env.JWT_SECRET);
-        const user=await User.findById(decoded.userId).select("-password");
+        // token ko decode kr rhe h
+        const decoded=jwt.verify(token,process.env.JWT_SECRET); 
+        
+        // ab decode token m userId hogi jisse hum apne database se uss userId ke user 
+        // data nikal lenege except uska password
+        const user=await User.findById(decoded.userId).select("-password");     
+
         if(!user){
             return res.status(401).json({message:"User not found"});
         }
@@ -18,6 +23,7 @@ const authMiddleware=async(req,res,next)=>{
             id:user._id,
             role:decoded.role || user.role
         }
+        
         next();
 
     } catch (error) {
